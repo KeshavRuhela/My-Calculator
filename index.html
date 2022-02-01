@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./volume.css">
+    <link rel="stylesheet" href="./distance.css">
+
+    <style>
+    @media only screen and (max-width: 425px){
+        #ceee{
+            width:310px;
+            height: 600px;
+        }
+        #remove {
+            color: black;
+            height: 30px;
+            position: absolute;
+            padding: 0px;
+            right: 0px;
+            top: 0px;
+            margin: 29px;
+            border-radius: 50%;
+        }
+        .fix{
+            margin-left:2px ;
+        }
+        .cl{
+            height: 50px;
+            padding: 12px;
+            padding-left: 32% !important;
+            padding-right: 31% !important;
+        }
+        span{
+            padding: 15px !important;
+            margin-top: -15px !important;
+        }
+        .nextRow {
+            margin: 10px;
+            padding: 16px;
+            padding-top: 13px !important;
+        }   
+    }
+    </style>
+</head>
+
+<body>
+    <div class="center" id="ceee">
+        <div class="containter2">
+            <div class="more">
+                <b id="more"> ... </b>
+                <a class="main" id="mainCal" onclick="mainCal()">Calculator</a>
+                <a class="info" onclick="help()">!</a>
+            </div>
+
+            <div id="moreCal">
+                <ul>
+                    <li onclick="area()" id="area">Area</li>
+                    <li onclick="volume()" id="volume">Volume</li>
+                    <li onclick="distance()" id="distance">Distance</li>
+                    <li onclick="Construction()">Force</li>
+                    <li onclick="Construction()">Speed</li>
+                    <li onclick="Construction()">Binary Conversion</li>
+                    <li onclick="Construction()">Decimal Conversion</li>
+                    <li onclick="Construction()">Percentage</li>
+                    <li onclick="Construction()">Logerithum</li>
+                    <li onclick="Construction()"><br></li>
+                    <li onclick="Construction()"><br></li>
+                    <li onclick="Construction()"><br></li>
+                </ul>
+            </div>
+        </div>
+        <div class="containter" id="mainCalculator">
+            <div style="text-align: center;">
+                <input type="text" value="" name="" id="screen" class="input nextRow">
+                <img src="data:image/png;base64,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" onclick="remoove()" id="remove" alt="Cross"></img>
+            </div>
+            <div class="nextRow" ><span style="border-radius:50%;" class="fix">+</span><span
+                    style="border-radius:50%;" class="fix">-</span><span class="fix" style="border-radius:50%;">/</span><span class="fix"
+                    style="border-radius:50%; ">x</span></div>
+                    <div class="nextRow" style="margin: 0px; padding: 12px;" ><span style="height: 50px;padding: 15px;padding-left: 12%;padding-right: 12%;">%</span><span style="height: 50px;padding: 15px;padding-left: 10%;padding-right: 10%;">Pow</span></div>
+                    <div class="nextRow"><span class="cl" style="height: 50px;padding: 15px;padding-left: 36%;padding-right: 36%;">Clear</span></div>
+            <div class="nextRow"><span id="one">1</span><span id="two">2</span><span id="three">3</span></div>
+            <div class="nextRow"><span id="four">4</span><span id="five">5</span><span id="six">6</span></div>
+            <div class="nextRow"><span id="seven">7</span><span id="eight">8</span><span id="nine">9</span></div>
+            <div class="nextRow"><span>0</span><span>.</span><span>=</span></div>
+        </div>
+
+        <div id="help">
+            <div style="text-align: center;"><u>
+                    <h4>To use this app use <br> below Instructions.</h4>
+                </u></div>
+            <ol>
+                <li>For Addition use two Operands and a '+' symbol.</li>
+                <li>For Multiplecation use '*' symbol.</li>
+                <li>For Divide use '/' symbol.</li>
+                <li>For Subtration use '-' symbol.</li>
+                <li>For Calcuate power of an operand use '**'.</li>
+                <li>Goto three dot for more Calculation.</li>
+                <li>for basic calculation click on Calculator text.</li>
+            </ol>
+        </div>
+        <!-- .................. Area ............... -->
+        <div id="mainArea">
+            <div style="text-align: center;">
+                <h3><u>Meeter Squre (m<sup>2</sup>) Conversions</u> <br></h3>
+            </div>
+            <form style="text-align: center;">
+                <input type="number" placeholder="Enter numerical value" id="areainputt">
+                <select id="areaOption" class="areaOption">
+                    <option value="m2">m<sup>2</sup></option>
+                    <option value="inch2">inch2</option>
+                    <option value="Feet2">Feet2</option>
+                    <option value="kilometer2">kilometer2</option>
+                    <option value="Hect">Hect</option>
+                    <option value="Acre">Acre</option>
+                </select>
+
+                <input type="button" name="" onclick="areaCalculation()" value="Calculate" id="">
+            </form>
+        </div>
+        <div id="areaTable">
+            <table id="areamainTable">
+                <tr>
+                    <td id="blannk">-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="areamainTable2">
+                <tr>
+                    <th>inch<sup>2</sup></th>
+                    <th>Feet<sup>2</sup></th>
+                    <th>kilometer<sup>2</sup></th>
+                    <th>Hect</th>
+                    <th>Acre</th>
+                </tr>
+            </table>
+        </div>
+        <!-- inch for -->
+        <div id="areaTableI2">
+            <table id="areamainTableI2">
+                <tr>
+                    <td id="blannk">-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="areamainTable2I2">
+                <tr>
+                    <th>M<sup>2</sup></th>
+                    <th>Feet<sup>2</sup></th>
+                    <th>kilometer<sup>2</sup></th>
+                    <th>Hect</th>
+                    <th>Acre</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for foot -->
+        <div id="areaTableF2">
+            <table id="areamainTableF2">
+                <tr>
+                    <td id="blannk">-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="areamainTable2F2">
+                <tr>
+                    <th>M<sup>2</sup></th>
+                    <th>Inch<sup>2</sup></th>
+                    <th>kilometer<sup>2</sup></th>
+                    <th>Hect</th>
+                    <th>Acre</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for kilometer2 -->
+        <div id="areaTableK2">
+            <table id="areamainTableK2">
+                <tr>
+                    <td id="blannk">-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="areamainTable2K2">
+                <tr>
+                    <th>M<sup>2</sup></th>
+                    <th>Inch<sup>2</sup></th>
+                    <th>Foot<sup>2</sup></th>
+                    <th>Hect</th>
+                    <th>Acre</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Hectare -->
+        <div id="areaTableH">
+            <table id="areamainTableH">
+                <tr>
+                    <td id="blannk">-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="areamainTable2H">
+                <tr>
+                    <th>M<sup>2</sup></th>
+                    <th>Inch<sup>2</sup></th>
+                    <th>Foot<sup>2</sup></th>
+                    <th>Kilometer<sup>2</sup></th>
+                    <th>Acre</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Hectare -->
+        <div id="areaTableA">
+            <table id="areamainTableA">
+                <tr>
+                    <td id="blannk">-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="areamainTable2A">
+                <tr>
+                    <th>M<sup>2</sup></th>
+                    <th>Inch<sup>2</sup></th>
+                    <th>Foot<sup>2</sup></th>
+                    <th>Kilometer<sup>2</sup></th>
+                    <th>Hect</th>
+                </tr>
+            </table>
+        </div>
+        <!-- ............... Volume ................ -->
+        <div id="mainVolume">
+            <div style="text-align: center;">
+                <h3><u>Volume Conversions</u> <br></h3>
+            </div>
+            <form style="text-align: center;">
+                <input type="number" placeholder="Enter numerical value" id="volumeinputt">
+                <select class="areaOption" id="areaOptionV">
+                    <option value="ml">ml</option>
+                    <option value="liter">liter<sup>3</sup></option>
+                    <option value="CubicInch">Cubic Inch(I3)</option>
+                    <option value="CubicFoot">Cubic Foot(F3)</option>
+                    <option value="CubicMeter">Cubic Meter</option>
+                    <option value="USLiquidGallon">US Liquid Gallon</option>
+                </select>
+                <input type="button" name="" onclick="volumeCalculation()" value="Calculate">
+            </form>
+        </div>
+        <!-- for milileter -->
+        <div id="volumeTable" class="volumeTable">
+            <table id="volumemainTable" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="volumemainTable2" class="volumemainTable2">
+                <tr>
+                    <th>Liter</th>
+                    <th>Cubic Inch</th>
+                    <th>Cubic Foot</th>
+                    <th>Cubic Meter</th>
+                    <th>US liquid Gallon</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Liter -->
+        <div id="volumeTableV" class="volumeTable">
+            <table id="volumemainTableV" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="volumemainTable2V" class="volumemainTable2">
+                <tr>
+                    <th>ml</th>
+                    <th>Cubic Inch</th>
+                    <th>Cubic Foot</th>
+                    <th>Cubic Meter</th>
+                    <th>US liquid Gallon</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Inch3 -->
+        <div id="volumeTableI" class="volumeTable">
+            <table id="volumemainTableI" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="volumemainTable2I" class="volumemainTable2">
+                <tr>
+                    <th>ml</th>
+                    <th>Liter</th>
+                    <th>Cubic Foot</th>
+                    <th>Cubic Meter</th>
+                    <th>US liquid Gallon</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Foot3 -->
+        <div id="volumeTableF" class="volumeTable">
+            <table id="volumemainTableF" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="volumemainTable2F" class="volumemainTable2">
+                <tr>
+                    <th>ml</th>
+                    <th>Liter</th>
+                    <th>Cubic Inch</th>
+                    <th>Cubic Meter</th>
+                    <th>US liquid Gallon</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for meter3 -->
+        <div id="volumeTableM" class="volumeTable">
+            <table id="volumemainTableM" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="volumemainTable2M" class="volumemainTable2">
+                <tr>
+                    <th>ml</th>
+                    <th>Liter</th>
+                    <th>Cubic Inch</th>
+                    <th>Cubic Foot</th>
+                    <th>US liquid Gallon</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for US Liquid Gallon -->
+        <div id="volumeTableU" class="volumeTable">
+            <table id="volumemainTableU" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="volumemainTable2U" class="volumemainTable2">
+                <tr>
+                    <th>ml</th>
+                    <th>Liter</th>
+                    <th>Cubic Inch</th>
+                    <th>Cubic Foot</th>
+                    <th>Cubic meter</th>
+                </tr>
+            </table>
+        </div>
+        <!-- .......................... Distance ........................... -->
+        <div id="mainDistance">
+            <div style="text-align: center;">
+                <h3><u>Distance Conversions</u> <br></h3>
+            </div>
+            <form style="text-align: center;">
+                <input type="number" placeholder="Enter numerical value" id="distanceinputt">
+                <select class="areaOption" id="distanceOptionV">
+                    <option value="mm">MiliMeter</option>
+                    <option value="cm">Centimeter</option>
+                    <option value="inch">Inch</option>
+                    <option value="meter">Meter</option>
+                    <option value="kilometer">Kilometre</option>
+                    <option value="Foot">Foot</option>
+                    <option value="Gaj">Gaj</option>
+                </select>
+                <input type="button" name="" onclick="DistanceCalculation()" value="Calculate">
+            </form>
+        </div>
+        <!-- for milimeter -->
+        <div id="distanceTable" class="volumeTable">
+            <table id="distancemainTable" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="distancemainTable2" class="volumemainTable2">
+                <tr>
+                    <th>Centimeter</th>
+                    <th>Inch</th>
+                    <th>Meter</th>
+                    <th>Kilometre</th>
+                    <th>Foot</th>
+                    <th>Gaj</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Centimeter -->
+        <div id="distanceTableC" class="volumeTable">
+            <table id="distancemainTableC" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="distancemainTable2C" class="volumemainTable2">
+                <tr>
+                    <th>MiliMeter</th>
+                    <th>Inch</th>
+                    <th>Meter</th>
+                    <th>Kilometre</th>
+                    <th>Foot</th>
+                    <th>Gaj</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Meter -->
+        <div id="distanceTableM" class="volumeTable">
+            <table id="distancemainTableM" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="distancemainTable2M" class="volumemainTable2">
+                <tr>
+                    <th>MiliMeter</th>
+                    <th>Centimeter</th>
+                    <th>Inch</th>
+                    <th>Kilometre</th>
+                    <th>Foot</th>
+                    <th>Gaj</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Kilo Meter -->
+        <div id="distanceTableK" class="volumeTable">
+            <table id="distancemainTableK" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="distancemainTable2K" class="volumemainTable2">
+                <tr>
+                    <th>MiliMeter</th>
+                    <th>Centimeter</th>
+                    <th>Inch</th>
+                    <th>Metre</th>
+                    <th>Foot</th>
+                    <th>Gaj</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Foot -->
+        <div id="distanceTableF" class="volumeTable">
+            <table id="distancemainTableF" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="distancemainTable2F" class="volumemainTable2">
+                <tr>
+                    <th>MiliMeter</th>
+                    <th>Centimeter</th>
+                    <th>Inch</th>
+                    <th>Metre</th>
+                    <th>Kilometer</th>
+                    <th>Gaj</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Gaj-->
+        <div id="distanceTableG" class="volumeTable">
+            <table id="distancemainTableG" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="distancemainTable2G" class="volumemainTable2">
+                <tr>
+                    <th>MiliMeter</th>
+                    <th>Centimeter</th>
+                    <th>Inch</th>
+                    <th>Metre</th>
+                    <th>Kilometer</th>
+                    <th>Foot</th>
+                </tr>
+            </table>
+        </div>
+        <!-- for Inch-->
+        <div id="distanceTableI" class="volumeTable">
+            <table id="distancemainTableI" class="volumemainTable">
+                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+            <table id="distancemainTable2I" class="volumemainTable2">
+                <tr>
+                    <th>MiliMeter</th>
+                    <th>Centimeter</th>
+                    <th>Metre</th>
+                    <th>Kilometer</th>
+                    <th>Foot</th>
+                    <th>Gaj</th>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
+<script>
+    var one = document.getElementById('one');
+    var two = document.getElementById('two');
+    var three = document.getElementById('three');
+    var four = document.getElementById('four');
+    var five = document.getElementById('five');
+    var six = document.getElementById('six');
+    var seven = document.getElementById('seven');
+    var eight = document.getElementById('eight');
+    var nine = document.getElementById('nine');
+    var screen = document.getElementById('screen');
+    var mor = document.getElementById("more");
+    var morData = document.getElementById('moreCal');
+    var mainCalculator = document.getElementById('mainCalculator');
+    var Info = document.getElementById('help');
+    var mainCalc = document.getElementById('mainCal');
+    mainCalc.style.color = "white"
+    var MainArea = document.getElementById('mainArea');
+    var mainVolume = document.getElementById('mainVolume');
+    var mainDistance = document.getElementById('mainDistance');
+    var Area = document.getElementById('area');
+    var Areainputt = document.getElementById('areainputt');
+    var AreaMainTable = document.getElementById('areamainTable');
+    var AreaMainTableI2 = document.getElementById('areamainTableI2');
+    var AreaMainTableF2 = document.getElementById('areamainTableF2');
+    var AreaMainTableK2 = document.getElementById('areamainTableK2');
+    var AreaMainTableH = document.getElementById('areamainTableH');
+    var AreaMainTableA = document.getElementById('areamainTableA');
+    var VolumeMainTable = document.getElementById('volumemainTable');
+    var DistanceMainTable = document.getElementById('distancemainTable');
+    var VolumeMainTableV = document.getElementById('volumemainTableV');
+    var VolumeMainTableI = document.getElementById('volumemainTableI');
+    var VolumeMainTableF = document.getElementById('volumemainTableF');
+    var VolumeMainTableM = document.getElementById('volumemainTableM');
+    var VolumeMainTableU = document.getElementById('volumemainTableU');
+
+    var DistanceMainTableC = document.getElementById('distancemainTableC');
+    var DistanceMainTableI = document.getElementById('distancemainTableI');
+    var DistanceMainTableM = document.getElementById('distancemainTableM');
+    var DistanceMainTableK = document.getElementById('distancemainTableK');
+    var DistanceMainTableF = document.getElementById('distancemainTableF');
+    var DistanceMainTableG = document.getElementById('distancemainTableG');
+
+    var AreaMainTable2 = document.getElementById('areamainTable2');
+    var AreaMainTable2I2 = document.getElementById('areamainTable2I2');
+    var AreaMainTable2F2 = document.getElementById('areamainTable2F2');
+    var AreaMainTable2K2 = document.getElementById('areamainTable2K2');
+    var AreaMainTable2H = document.getElementById('areamainTable2H');
+    var AreaMainTable2A = document.getElementById('areamainTable2A');
+    var VolumeMainTable2 = document.getElementById('volumemainTable2');
+    var DistanceMainTable2 = document.getElementById('distancemainTable2');
+    var VolumeMainTable2V = document.getElementById('volumemainTable2V');
+    var VolumeMainTable2I = document.getElementById('volumemainTable2I');
+    var VolumeMainTable2F = document.getElementById('volumemainTable2F');
+    var VolumeMainTable2M = document.getElementById('volumemainTable2M');
+    var VolumeMainTable2U = document.getElementById('volumemainTable2U');
+
+    var DistanceMainTable2C = document.getElementById('distancemainTable2C');
+    var DistanceMainTable2I = document.getElementById('distancemainTable2I');
+    var DistanceMainTable2M = document.getElementById('distancemainTable2M');
+    var DistanceMainTable2K = document.getElementById('distancemainTable2K');
+    var DistanceMainTable2F = document.getElementById('distancemainTable2F');
+    var DistanceMainTable2G = document.getElementById('distancemainTable2G');
+
+    var areaTable = document.getElementById('areaTable');
+    var areaTableI2 = document.getElementById('areaTableI2');
+    var areaTableF2 = document.getElementById('areaTableF2');
+    var areaTableK2 = document.getElementById('areaTableK2');
+    var areaTableH = document.getElementById('areaTableH');
+    var areaTableA = document.getElementById('areaTableA');
+    var Blannk = document.getElementById('blannk');
+    var AreaOption = document.getElementById('areaOption');
+    var AreaOptionV = document.getElementById('areaOptionV');
+    var DistanceOptionV = document.getElementById('distanceOptionV');
+    var volumeTable = document.getElementById('volumeTable');
+    var distanceTable = document.getElementById('distanceTable');
+    var volumeTableV = document.getElementById('volumeTableV');
+    var volumeTableI = document.getElementById('volumeTableI');
+    var volumeTableF = document.getElementById('volumeTableF');
+    var volumeTableM = document.getElementById('volumeTableM');
+    var volumeTableU = document.getElementById('volumeTableU');
+    var distanceTableC = document.getElementById('distanceTableC');
+    var distanceTableM = document.getElementById('distanceTableM');
+    var distanceTableK = document.getElementById('distanceTableK');
+    var distanceTableF = document.getElementById('distanceTableF');
+    var distanceTableG = document.getElementById('distanceTableG');
+    var distanceTableI = document.getElementById('distanceTableI');
+
+
+</script>
+<script src="./index.js"></script>
+<script src="./distance.js"></script>
+
+</html>

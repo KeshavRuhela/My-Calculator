@@ -1,0 +1,422 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid green;
+    padding: 2px;
+    border-radius: 7px;
+    background-color: #aef5b3ba;
+}
+
+.containter {
+    position: relative;
+    text-align: center;
+    /* transform: translate(-50%,50%); */
+    /* border: 2px solid red; */
+}
+
+.containter2 {
+    margin-bottom: -8px;
+    background-color: tomato;
+    border-radius: 5px;
+
+}
+
+span {
+    background-color: rgb(223 215 215 / 55%);
+    border: 2px solid gray;
+    padding: 18px;
+    border-radius: 7px;
+    margin: 18px;
+    cursor: pointer;
+}
+
+span:hover {
+    background-color: gray;
+    border: 2px solid gray;
+    cursor: pointer;
+}
+
+.nextRow {
+    margin: 10px;
+    padding: 16px;
+}
+
+.input {
+    border: 2px solid blueviolet;
+    height: 35px;
+    width: 82%;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px 0px;
+}
+
+.scrollBox {
+    height: 261px;
+    width: 50px;
+    position: absolute;
+    top: 243px;
+    left: 72%;
+    border: 2px dotted orange;
+}
+
+.more {
+    font-size: 28px;
+    border: 2px solid salmon;
+    z-index: 2;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    border-radius: 5px;
+    position: relative;
+}
+
+#moreCal {
+    height: 250px;
+    width: 172px;
+    border: 2px solid black;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    background-color: #ffdff4;
+    overflow: auto;
+}
+
+b {
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    margin: 10px;
+    margin-left: -25px;
+}
+
+ul li {
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+    box-shadow: 0px 2px 3px 0px;
+    cursor: pointer;
+}
+
+#remove {
+    color: black;
+    height: 30px; 
+    position: absolute;
+    padding: 0px;
+    right: 0px;
+    margin: 29px;
+    border-radius: 50%;
+}
+
+div div div a {
+    background-color: white;
+    border: 2px solid black;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-weight: bold;
+}
+
+.info:hover {
+    background-color: black;
+    color: white;
+    cursor: help;
+}
+
+.main {
+    background-color: tomato;
+    border: 2px solid tomato;
+    position: absolute;
+    left: 30%;
+    top: 5px;
+    font-weight: bold;
+}
+
+.main:hover {
+    cursor: pointer;
+}
+
+#help {
+    display: none;
+    overflow-y: scroll;
+}
+
+ol li {
+    font-size: 1.5rem;
+    margin: 15px;
+    padding: 3px;
+    text-indent: 5px;
+}
+
+#help {
+    height: 500px;
+    width: 340px;
+}
+
+#mainArea {
+    height: 250px;
+    width: 340px;
+    display: none;
+}
+
+input {
+    font-size: 18px;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid green;
+    margin: 15px;
+}
+
+input:focus-visible {
+    outline: none;
+}
+
+input[type=button] {
+    font-weight: 600;
+    padding: 8px;
+}
+
+input[type=button]:hover {
+    background-color: red;
+    color: white;
+    border: 2px solid green;
+}
+
+#areaTable {
+    height: 250px;
+    overflow: auto;
+    width: 340px;
+}
+
+#areaTable table {
+    text-align: center;
+    width: 100%;
+}
+
+#areaTableI2 {
+    height: 250px;
+    overflow: auto;
+    width: 340px;
+}
+
+#areaTableI2 table {
+    text-align: center;
+    width: 100%;
+}
+
+#areaTableF2 {
+    height: 250px;
+    overflow: auto;
+    width: 340px;
+}
+
+#areaTableF2 table {
+    text-align: center;
+    width: 100%;
+}
+
+#areaTableK2 {
+    height: 250px;
+    overflow: auto;
+    width: 340px;
+}
+
+#areaTableK2 table {
+    text-align: center;
+    width: 100%;
+}
+
+#areaTableH {
+    height: 250px;
+    overflow: auto;
+    width: 340px;
+}
+
+#areaTableH table {
+    text-align: center;
+    width: 100%;
+}
+
+#areaTableA {
+    height: 250px;
+    overflow: auto;
+    width: 340px;
+}
+
+#areaTableA table {
+    text-align: center;
+    width: 100%;
+}
+
+#areamainTable {
+    font-size: 15px;
+    display: inline-table;
+    border-top: 2px solid gray;
+}
+
+#areamainTableI2 {
+    font-size: 15px;
+    display: inline-table;
+    border-top: 2px solid gray;
+}
+
+#areamainTableF2 {
+    font-size: 15px;
+    display: inline-table;
+    border-top: 2px solid gray;
+}
+
+#areamainTableK2 {
+    font-size: 15px;
+    display: inline-table;
+    border-top: 2px solid gray;
+}
+
+#areamainTableH {
+    font-size: 15px;
+    display: inline-table;
+    border-top: 2px solid gray;
+}
+
+#areamainTableA {
+    font-size: 15px;
+    display: inline-table;
+    border-top: 2px solid gray;
+}
+
+#areamainTable tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTableI2 tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTableF2 tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTableK2 tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTableH tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTableA tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTable2 tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTable2I2 tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTable2F2 tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTable2K2 tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTable2H tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTable2A tr td {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid red;
+}
+
+#areamainTable2 {
+    border-top: 2px solid gray;
+    display: inline-table;
+    font-size: 15px;
+
+}
+
+#areamainTable2I2 {
+    border-top: 2px solid gray;
+    display: inline-table;
+    font-size: 15px;
+
+}
+
+#areamainTable2F2 {
+    border-top: 2px solid gray;
+    display: inline-table;
+    font-size: 15px;
+}
+
+#areamainTable2K2 {
+    border-top: 2px solid gray;
+    display: inline-table;
+    font-size: 15px;
+}
+
+#areamainTable2H {
+    border-top: 2px solid gray;
+    display: inline-table;
+    font-size: 15px;
+}
+
+#areamainTable2A {
+    border-top: 2px solid gray;
+    display: inline-table;
+    font-size: 15px;
+}
+
+.areaOption {
+    BORDER: 2px solid black;
+    color: red;
+    font-size: 19px;
+    width: 73px;
+}
+
+.areaOption option {
+    border-bottom: 1px solid gray;
+}
+
+.areaOption:focus-visible {
+    outline: none;
+}
